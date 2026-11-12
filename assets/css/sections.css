@@ -623,7 +623,14 @@ html.js .hero [data-hero] { opacity: 0; }
     padding-left: 24px;
 }
 
+/* Slow drift on the floating detail chips */
+@keyframes float-soft {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(0, -9px, 0); }
+}
+
 .chef__badge {
+    animation: float-soft 7s var(--ease-in-out) infinite;
     position: absolute;
     right: -6px;
     bottom: 36px;
