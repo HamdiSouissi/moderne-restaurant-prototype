@@ -1,0 +1,11 @@
+# Local tooling
+node_modules/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+.env
+
+# Scratch
+image-search/
