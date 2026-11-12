@@ -1,0 +1,394 @@
+/* =============================================================================
+   CORTILE — base.css
+   1. Design tokens      2. Reset
+   3. Typography         4. Layout utilities
+   5. Frames & figures   6. Global motion & accessibility
+   ========================================================================== */
+
+/* =============================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+:root {
+    /* Colour */
+    --ivory:        #FAF8F5;
+    --ivory-2:      #F2EEE8;
+    --ivory-3:      #EDE7DE;
+    --white:        #FFFFFF;
+    --ink:          #1F1F1F;
+    --ink-soft:     #4C4842;
+    --muted:        #777777;
+    --muted-soft:   #9A948A;
+    --gold:         #B9925B;
+    --gold-soft:    #D4B483;
+    --gold-ink:     #A47C46;   /* gold used for text: +1 contrast step */
+    --gold-pale:    #EBDCC4;
+    --sage:         #7C8F5E;
+    --line:         rgba(31, 31, 31, 0.12);
+    --line-soft:    rgba(31, 31, 31, 0.07);
+    --line-light:   rgba(255, 255, 255, 0.28);
+
+    /* Type */
+    --serif: "Cormorant Garamond", "Times New Roman", serif;
+    --sans:  "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    /* Radii */
+    --r-xs: 4px;
+    --r-sm: 10px;
+    --r-md: 18px;
+    --r-lg: 26px;
+    --r-pill: 999px;
+
+    /* Shadow — warm, never grey */
+    --shadow-xs:  0 6px 18px -14px rgba(58, 44, 26, 0.55);
+    --shadow-sm:  0 18px 40px -30px rgba(58, 44, 26, 0.55);
+    --shadow-md:  0 34px 70px -44px rgba(58, 44, 26, 0.55);
+    --shadow-lg:  0 60px 120px -60px rgba(58, 44, 26, 0.55);
+
+    /* Motion */
+    --ease:      cubic-bezier(0.22, 0.61, 0.36, 1);
+    --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+    /* Layout */
+    --container: 1560px;
+    --gutter: clamp(20px, 4vw, 64px);
+    --section-y: clamp(84px, 11vw, 176px);
+    --header-h: 92px;
+}
+
+/* =============================================================================
+   2. RESET
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto; /* Lenis handles smooth scrolling */
+}
+
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+    background: var(--ivory);
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+body.is-locked { overflow: hidden; }
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+img { height: auto; }
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul, ol { list-style: none; padding: 0; }
+
+fieldset { border: 0; padding: 0; margin: 0; }
+
+::selection {
+    background: var(--gold-soft);
+    color: #fff;
+}
+
+/* =============================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+}
+
+h3, h4 { line-height: 1.15; letter-spacing: -0.01em; }
+
+p { text-wrap: pretty; }
+
+em {
+    font-style: italic;
+    color: var(--gold-ink);
+}
+
+strong { font-weight: 600; color: var(--ink); }
+
+/* Eyebrow label — the small caps voice of the brand */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.eyebrow__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex: none;
+}
+
+.eyebrow--light { color: rgba(255, 255, 255, 0.82); }
+.eyebrow--center { justify-content: center; }
+
+.label {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted-soft);
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 4.9vw, 5.1rem);
+    font-weight: 300;
+    line-height: 0.99;
+    margin-top: 22px;
+}
+
+.lead {
+    font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 46ch;
+}
+
+.body-text {
+    font-size: 0.965rem;
+    line-height: 1.85;
+    color: #6E6A62;
+    max-width: 56ch;
+}
+
+.body-text + .body-text { margin-top: 1.1em; }
+
+.pullquote {
+    position: relative;
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--ink);
+    padding-left: 34px;
+    border-left: 1px solid var(--gold-soft);
+    max-width: 30ch;
+}
+
+.pullquote__mark {
+    position: absolute;
+    left: 24px;
+    top: -0.35em;
+    font-size: 2.6em;
+    line-height: 1;
+    color: var(--gold-pale);
+    font-family: var(--serif);
+}
+
+.figcaption {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted-soft);
+    margin-top: 16px;
+}
+
+.figcaption__line {
+    width: 26px;
+    height: 1px;
+    background: var(--gold-soft);
+    display: inline-block;
+}
+
+/* =============================================================================
+   4. LAYOUT UTILITIES
+   ========================================================================== */
+.container {
+    width: min(var(--container), calc(100vw - var(--gutter) * 2));
+    margin-inline: auto;
+}
+
+.section {
+    position: relative;
+    padding-block: var(--section-y);
+}
+
+section[id],
+footer[id] { scroll-margin-top: 96px; }
+
+.section + .section { padding-top: calc(var(--section-y) * 0.82); }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 999;
+    padding: 12px 18px;
+    background: var(--ink);
+    color: var(--ivory);
+    border-radius: var(--r-xs);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    transform: translateY(-160%);
+    transition: transform 0.3s var(--ease);
+}
+
+.skip-link:focus-visible { transform: translateY(0); }
+
+/* =============================================================================
+   5. FRAMES & FIGURES
+   ========================================================================== */
+.frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-xs);
+    background: var(--ivory-3);
+}
+
+.frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.6s var(--ease-out);
+    will-change: transform;
+}
+
+.frame--arch {
+    border-radius: 999px 999px var(--r-xs) var(--r-xs);
+}
+
+.frame--gold {
+    padding: 10px;
+    background: var(--ivory);
+    border: 1px solid var(--gold-pale);
+    border-radius: 999px 999px var(--r-xs) var(--r-xs);
+}
+
+.frame--gold img { border-radius: 999px 999px 2px 2px; }
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* =============================================================================
+   6. GLOBAL MOTION & ACCESSIBILITY
+   ========================================================================== */
+:focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+/* The loader hides itself after 3s even if JS never runs */
+@keyframes loader-fallback {
+    0%, 88%  { opacity: 1; visibility: visible; }
+    100%     { opacity: 0; visibility: hidden; }
+}
+
+/* Reveal states are only applied when JavaScript is running */
+html.js [data-reveal] { opacity: 0; }
+html.no-js [data-reveal] { opacity: 1; }
+
+/* [hidden] must always win over display rules */
+[hidden] { display: none !important; }
+
+/* If GSAP fails to load (offline, blocked CDN), nothing stays invisible */
+html.no-gsap [data-reveal],
+html.no-gsap .hero [data-hero] { opacity: 1 !important; transform: none !important; }
+html.no-gsap .hero__title .line__inner { transform: none !important; }
+
+/* Swiper disabled arrows */
+.round-btn.swiper-button-disabled { opacity: 0.35; pointer-events: none; }
+
+/* Very light paper grain — the detail that separates print from screen */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.022;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    html.js [data-reveal] { opacity: 1 !important; transform: none !important; }
+    .cursor { display: none !important; }
+}
