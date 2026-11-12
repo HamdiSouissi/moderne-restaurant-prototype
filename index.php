@@ -56,11 +56,11 @@ require_once __DIR__ . '/includes/functions.php';
     <?php require __DIR__ . '/includes/footer.php'; ?>
     <?php require __DIR__ . '/includes/ui.php'; ?>
 
-    <!-- Vendors (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <!-- Vendors, self-hosted: no third-party CDN between the guest and the site -->
+    <script src="<?= e(asset('assets/vendor/gsap.min.js')) ?>" defer></script>
+    <script src="<?= e(asset('assets/vendor/ScrollTrigger.min.js')) ?>" defer></script>
+    <script src="<?= e(asset('assets/vendor/lenis.min.js')) ?>" defer></script>
+    <script src="<?= e(asset('assets/vendor/swiper-bundle.min.js')) ?>" defer></script>
 
     <!-- Application -->
     <script src="<?= e(asset('assets/js/app.js')) ?>" type="module"></script>

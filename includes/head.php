@@ -23,13 +23,13 @@ $ogImage = 'assets/img/hero-1024.jpg';
 <!-- Favicon: a small arch, drawn inline so no extra request is needed -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FAF8F5'/%3E%3Cpath d='M9 26V15a7 7 0 0 1 14 0v11' fill='none' stroke='%23B9925B' stroke-width='1.6'/%3E%3Cpath d='M6 26h20' stroke='%231F1F1F' stroke-width='1.2'/%3E%3C/svg%3E">
 
-<!-- Typography -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap">
+<!-- Typography — self-hosted woff2, the two text faces are preloaded -->
+<link rel="preload" as="font" type="font/woff2" href="<?= e(asset('assets/fonts/cormorant-400.woff2')) ?>" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="<?= e(asset('assets/fonts/manrope-400.woff2')) ?>" crossorigin>
+<link rel="stylesheet" href="<?= e(asset('assets/css/fonts.css')) ?>">
 
 <!-- Swiper (gallery / testimonials) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="<?= asset('assets/vendor/swiper-bundle.min.css') ?>">
 
 <!-- Site styles, split by concern -->
 <link rel="stylesheet" href="<?= e(asset('assets/css/base.css')) ?>">

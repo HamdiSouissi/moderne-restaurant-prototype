@@ -5,7 +5,8 @@ démonstration commerciale haut de gamme : identité lumineuse, typographie édi
 animations discrètes et parcours complets (réservation, commande, newsletter).
 
 > **Stack** — PHP 8 natif · HTML5 · CSS3 · JavaScript Vanilla (ES modules)
-> **Librairies** — GSAP + ScrollTrigger · Lenis · SwiperJS · Google Fonts
+> **Librairies** — GSAP + ScrollTrigger · Lenis · SwiperJS (auto-hébergées)
+> **Typographies** — Cormorant Garamond & Manrope, auto-hébergées (woff2, sous-ensemble latin)
 > **Aucune** base de données, administration, authentification, ni framework (React/Vue/Laravel…).
 
 ---
@@ -24,9 +25,10 @@ Puis ouvrir <http://localhost:8000>.
 Sur un hébergement mutualisé classique (Apache, OVH, PlanetHoster…), il suffit de
 déposer les fichiers à la racine du domaine : `index.php` est détecté automatiquement.
 
-> Le site charge GSAP, Lenis, Swiper et les polices depuis des CDN publics.
-> Sans connexion, le contenu reste parfaitement lisible et navigable (dégradation
-> progressive prévue dans `assets/js/app.js`).
+> GSAP, ScrollTrigger, Lenis, Swiper **et les deux polices** sont servis localement
+> (`assets/vendor/`, `assets/fonts/`) : aucun CDN tiers dans le chemin critique, le
+> site s'affiche à l'identique même hors ligne. Sans JavaScript, tout le contenu
+> reste lisible et navigable.
 
 ---
 
@@ -50,7 +52,10 @@ cortile/
 │       ├── reservation.php    order.php              testimonials.php
 │       └── faq.php            contact.php
 ├── assets/
+│   ├── fonts/                 # Cormorant Garamond + Manrope (woff2, latin)
+│   ├── vendor/                # GSAP, ScrollTrigger, Lenis, Swiper (auto-hébergés)
 │   ├── css/
+│   │   ├── fonts.css          # @font-face (auto-hébergées)
 │   │   ├── base.css           # Tokens, reset, typographie, utilitaires
 │   │   ├── components.css     # Header, boutons, loader, curseur, formulaires, panier…
 │   │   ├── sections.css       # Mise en page de chaque section
@@ -157,4 +162,4 @@ dézooment lentement, révélations au scroll, parallaxe, grain papier, pulsatio
 
 Design & développement — prototype sur mesure.
 Photographies — visuels de démonstration.
-Polices — Cormorant Garamond & Manrope (Google Fonts, SIL Open Font License).
+Polices — Cormorant Garamond & Manrope (SIL Open Font License, auto-hébergées).
